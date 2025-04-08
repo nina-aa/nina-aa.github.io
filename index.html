@@ -74,38 +74,46 @@
             <div class="image-gallery-container">
                 <div class="image-gallery setup-flow">
                     <div class="gallery-item">
-                        <img src="images/new1.png" alt="New 1">
+                        <img src="images/guy_installing_hor2.png" alt="New 1">
                         <p class="gallery-caption">Physically install the sensor</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/new2.png" alt="New 2">
-                        <p class="gallery-caption">Hold reference device</p>
+                        <img src="images/guy_connecting.png" alt="New 2">
+                        <p class="gallery-caption">Connect phone to the sensor</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/new3.png" alt="New 3">
+                        <img src="images/guy_with_ref.png" alt="New 2">
+                        <p class="gallery-caption">Get values from the reference device</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/guy_with_ref_and_phone_hor2.png" alt="New 3">
                         <p class="gallery-caption">Update values in the app</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/new4.png" alt="New 4">
-                        <p class="gallery-caption">Calibration complete</p>
+                        <img src="images/guy_done2.png" alt="New 4">
+                        <p class="gallery-caption">Installation complete</p>
                     </div>
                 </div>
                 <div class="image-gallery calibration-flow" style="display:none">
                     <div class="gallery-item">
-                        <img src="images/existing1.png" alt="Calibration 1">
+                        <img src="images/guy_maint_plan.png" alt="Calibration 1">
                         <p class="gallery-caption">Locate sensors using maintenance plan</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/new2.png" alt="Calibration 2">
-                        <p class="gallery-caption">Hold reference device</p>
+                        <img src="images/guy_connecting.png" alt="New 2">
+                        <p class="gallery-caption">Connect phone to the sensor</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/new3.png" alt="Calibration 3">
+                        <img src="images/guy_with_ref.png" alt="New 2">
+                        <p class="gallery-caption">Get values from the reference device</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/guy_with_ref_and_phone_hor2.png" alt="New 3">
                         <p class="gallery-caption">Update values in the app</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/new4.png" alt="Calibration 4">
-                        <p class="gallery-caption">Calibration complete</p>
+                        <img src="images/guy_done2.png" alt="New 4">
+                        <p class="gallery-caption">Maintenance complete</p>
                     </div>
                 </div>
             </div>
@@ -149,10 +157,13 @@
         <!--    <div class="nfc-wave"></div>-->
         <!--    <div class="nfc-wave"></div>-->
         <!--</div>-->
+        <p id="nfc-status">Touch the sensor with the phone and move the phone until they connect</p>
+
         <div class="ready-to-scan">
-            <img src="images/ready-to-scan3.png" alt="NFC">
+            <!--<img src="images/ready-to-scan3.png" alt="NFC">-->
+            <img src="images/scan1_extended21.png" alt="NFC Scan 1" id="scan-image-1" class="active-scan-image">
+            <img src="images/scan22.png" alt="NFC Scan 2" id="scan-image-2" class="inactive-scan-image">
         </div>
-        <p id="nfc-status">Bring phone very close to the sensor and move it around until they connect</p>
 
         <button id="start-scan-btn" class="btn">
             Start Scanning
@@ -180,7 +191,8 @@
                 <div class="device-text">
                     <p id="device_name">HMW90</p>
                     <p id="device_name_2"> HMD60929192298y298</p>
-                    <p id="connected-to-sensor"><span class="status-dot"></span>Connected to sensor</p>
+                    <p id="connected-to-sensor" style="display:none;"><span class="status-dot"></span>Connected to
+                        sensor</p>
                 </div>
             </div>
         </div>
@@ -281,14 +293,16 @@
                 without direct sunlight and at a distance from heat sources.</p>
         </div>
 
-        <p class="sensor-status"><span class="status-dot-red"></span>Not connected to sensor. Bring phone close to the
-            sensor to reconnect</p>
+        <!--<p class="sensor-status"><span class="status-dot-red"></span>Not connected to sensor. Bring phone close to the
+            sensor to reconnect</p>-->
 
         <h2>Reference values</h2>
 
         <div class="reference-input-container">
             <div class="reference-input-row">
+                <p id="format22.22">Data format example: 23.45 or -10.25</p>
                 <label for="temperature-input">Temperature</label>
+
                 <div class="input-unit-group">
                     <input type="text" id="temperature-input" placeholder="-" inputmode="decimal">
                     <select id="temperature-unit">

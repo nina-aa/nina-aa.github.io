@@ -157,15 +157,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // NFC Info page next button
-    if (nfcNextBtn) {
-        nfcNextBtn.addEventListener('click', function () {
-            showPage('scan-page');
-        });
-    }
+    /*  if (nfcNextBtn) {
+         nfcNextBtn.addEventListener('click', function () {
+             showPage('scan-page');
+         });
+     } */
 
 
 
-
+    let scanImageInterval;
     // Add this to your showPage function to handle special pages with no toolbar text
     function showPage(pageId) {
         // Hide all pages by removing active class
@@ -184,6 +184,11 @@ document.addEventListener('DOMContentLoaded', function () {
             document.body.classList.add('at-welcome-page');
         } else {
             document.body.classList.remove('at-welcome-page');
+        }
+        if (pageId === 'scan-page') {
+            startScanImageAlternating();
+        } else {
+            stopScanImageAlternating();
         }
 
         // Update top toolbar text based on current page
@@ -213,6 +218,37 @@ document.addEventListener('DOMContentLoaded', function () {
         updateProgressBar(pageId);
 
     }
+    function startScanImageAlternating() {
+        const image1 = document.getElementById('scan-image-1');
+        const image2 = document.getElementById('scan-image-2');
+
+        if (!image1 || !image2) return;
+
+        // Clear any existing interval
+        stopScanImageAlternating();
+
+        // Start a new interval
+        scanImageInterval = setInterval(() => {
+            if (image1.classList.contains('active-scan-image')) {
+                image1.classList.remove('active-scan-image');
+                image1.classList.add('inactive-scan-image');
+                image2.classList.remove('inactive-scan-image');
+                image2.classList.add('active-scan-image');
+            } else {
+                image2.classList.remove('active-scan-image');
+                image2.classList.add('inactive-scan-image');
+                image1.classList.remove('inactive-scan-image');
+                image1.classList.add('active-scan-image');
+            }
+        }, 1000); // Switch every 1 second
+    }
+
+    function stopScanImageAlternating() {
+        if (scanImageInterval) {
+            clearInterval(scanImageInterval);
+            scanImageInterval = null;
+        }
+    }
     // Modify the login form submission handler
     //if (loginForm) {
     //    loginForm.addEventListener('submit', function (event) {
@@ -238,7 +274,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 usernameInput.classList.remove('invalid-input');
                 document.getElementById('email-validation-message').style.display = 'none';
                 // Now proceed to next page
-                showPage('nfc-info-page');
+                //showPage('nfc-info-page');
+                showPage('scan-page');
             }
         });
     }
@@ -657,7 +694,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('step-calibrate').classList.add('completed');
 
                 // Second line - completed
-                document.getElementById('line-2').classList.add('completed');
+                //document.getElementById('line-2').classList.add('completed');
 
                 // Third step - disabled (grey, no current class)
                 document.getElementById('step-maintain').classList.remove('current');
@@ -788,7 +825,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    if (calibrationInputNextBtn) {
+    /* if (calibrationInputNextBtn) {
         calibrationInputNextBtn.addEventListener('click', function () {
             // Make sensor status flash 3 times
             if (sensorStatus) {
@@ -814,6 +851,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     sensorStatus.classList.remove('flare');
                 }, 4000);
             }
+        });
+    } */
+    if (calibrationInputNextBtn) {
+        calibrationInputNextBtn.addEventListener('click', function () {
+            showPage('calibrated-page');
         });
     }
 

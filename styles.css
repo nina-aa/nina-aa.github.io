@@ -22,6 +22,7 @@ h1 {
 h2 {
     font-size: 20px;
     margin: 10px 0;
+    padding-top: 20px;
     text-align: center;
     font-weight: medium;
 }
@@ -270,12 +271,7 @@ p {
     margin: 30px auto;
 }
 
-.ready-to-scan img {
-    width: 80%;
-    object-fit: contain;
-    display: block;
-    margin: 30px auto;
-}
+
 
 /* Instructions Content */
 .instructions-content {
@@ -1571,4 +1567,35 @@ input:checked+.toggle-slider:before {
 #maintenance-2 {
     font-size: 16px;
     /*font-style: italic;*/
+}
+
+.ready-to-scan {
+    position: relative;
+    /* Creates a positioning context for absolute children */
+    width: 100%;
+    height: 400px;
+}
+
+.ready-to-scan img {
+    width: 60%;
+    object-fit: contain;
+    /*display: block;*/
+    /*margin: 30px auto;*/
+    top: 0;
+    left: 50%;
+    /* Position at 50% from the left edge */
+    position: absolute;
+    transform: translateX(-50%);
+    transition: opacity 0.2s ease-in-out;
+    /*border: 1px solid #333;*/
+}
+
+
+
+.active-scan-image {
+    opacity: 1;
+}
+
+.inactive-scan-image {
+    opacity: 0;
 }
